@@ -11,7 +11,7 @@ const MessageInput = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (!file.type.startsWith("image/")) {
+    if (!file?.type.startsWith("image/")) {
       toast.error("Please select an image file");
       return;
     }
@@ -38,7 +38,6 @@ const MessageInput = () => {
         image: imagePreview,
       });
 
-      // Clear form
       setText("");
       setImagePreview(null);
       if (fileInputRef.current) fileInputRef.current.value = "";
@@ -69,8 +68,8 @@ const MessageInput = () => {
         </div>
       )}
 
-      <form onSubmit={handleSendMessage} className="flex items-center gap-2">
-        <div className="flex-1 flex gap-2">
+      <form onSubmit={handleSendMessage} className="flex items-center gap-1 sm:gap-2">
+        <div className="flex-1 flex gap-1 sm:gap-2">
           <input
             type="text"
             className="w-full input input-bordered rounded-lg input-sm sm:input-md"
@@ -88,7 +87,7 @@ const MessageInput = () => {
 
           <button
             type="button"
-            className={`hidden sm:flex btn btn-circle
+            className={`flex btn btn-circle
                      ${imagePreview ? "text-emerald-500" : "text-zinc-400"}`}
             onClick={() => fileInputRef.current?.click()}
           >
@@ -106,4 +105,5 @@ const MessageInput = () => {
     </div>
   );
 };
+
 export default MessageInput;
